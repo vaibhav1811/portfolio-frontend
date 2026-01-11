@@ -22,6 +22,12 @@
     border-radius: 1.5rem;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-small);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+.lab__card:hover {
+    box-shadow: var(--shadow-medium);
 }
 
 .stat__card {
@@ -58,6 +64,12 @@
     padding: 1.25rem;
     border-radius: 1.25rem;
     border: 1px solid var(--border-color);
+    transition: transform 0.2s ease;
+}
+
+.learning__item:hover {
+    transform: translateX(5px);
+    border-color: var(--primary-color);
 }
 
 .learning__header {
@@ -79,6 +91,7 @@
 
 .learning__name {
     font-size: var(--fs-base);
+    font-weight: var(--medium);
 }
 
 .learning__status {
@@ -86,28 +99,33 @@
     color: var(--text-color-alt);
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: var(--semibold);
 }
 
 
 .lab__featured {
-    margin-top: 4rem;
+    margin-top: 5rem;
     background: linear-gradient(135deg, var(--bg-color-alt), var(--bg-color));
     padding: 3rem;
     border-radius: 2rem;
     border: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
+    /* Optimize large card rendering */
+    transform: translateZ(0);
 }
 
 .featured__tag {
     display: inline-block;
     padding: 0.4rem 1rem;
-    background: rgba(233, 69, 96, 0.1);
+    background: rgba(0, 243, 255, 0.1);
+    /* Neon Cyan tint */
     color: var(--primary-color);
     border-radius: 2rem;
     font-size: var(--fs-xs);
     font-weight: var(--bold);
     margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 243, 255, 0.2);
 }
 
 .featured__title {
@@ -135,25 +153,30 @@
     height: 8px;
     background: var(--primary-color);
     border-radius: 50%;
-    animation: pulse 1.5s infinite;
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.7);
+        box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7);
     }
 
     70% {
-        box-shadow: 0 0 0 10px rgba(233, 69, 96, 0);
+        box-shadow: 0 0 0 10px rgba(0, 243, 255, 0);
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(233, 69, 96, 0);
+        box-shadow: 0 0 0 0 rgba(0, 243, 255, 0);
     }
 }
 
 @media screen and (max-width: 900px) {
     .lab__grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .lab__featured {
+        padding: 2rem;
     }
 }

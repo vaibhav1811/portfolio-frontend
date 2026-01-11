@@ -3,14 +3,15 @@
 :root {
   --header-height: 3.5rem;
 
-  /*==font and topography===*/
+  /*== Fluid Typography (God Tier Scaling) ===*/
   --body-font: 'Inter', sans-serif;
   --title-font: 'Outfit', sans-serif;
 
-  --fs-h1: 3.5rem;
-  --fs-h2: 2.5rem;
-  --fs-h3: 1.5rem;
-  --fs-lg: 1.125rem;
+  /* Min 320px -> Max 1200px scaling */
+  --fs-h1: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  --fs-h2: clamp(1.75rem, 3vw + 1rem, 3rem);
+  --fs-h3: clamp(1.25rem, 2vw + 0.5rem, 1.75rem);
+  --fs-lg: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
   --fs-base: 1rem;
   --fs-sm: 0.875rem;
   --fs-xs: 0.75rem;
@@ -23,30 +24,33 @@
 }
 
 body {
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/*= Dark Theme Variables (Default) ==*/
-/*= Dark Theme Variables (Default - CYBER TECH) ==*/
+/*= Dark Theme Variables (Optimized for OLED/High Contrast) ==*/
 .dark-theme {
   --primary-color: #00f3ff;
-  /* Neon Cyan */
   --primary-color-alt: #bc13fe;
-  /* Neon Purple */
   --title-color: #ffffff;
-  --text-color: #a0a0a5;
-  --text-color-alt: #707075;
+  --text-color: #b0b0b8;
+  /* Slightly lighter for readability */
+  --text-color-alt: #888890;
   --bg-color: #050505;
-  /* Deep Void */
-  --bg-color-alt: #0a0a0c;
-  --header-bg: rgba(5, 5, 5, 0.85);
-  --border-color: #00f3ff40;
-  /* Cyan with opacity */
+  --bg-color-alt: #0e0e10;
+  --header-bg: rgba(5, 5, 5, 0.7);
+  /* Reduced opacity for better glass effect */
+  --border-color: rgba(0, 243, 255, 0.15);
   --container-color: #121214;
-  --shadow-small: 0 4px 12px rgba(0, 243, 255, 0.15);
-  --shadow-medium: 0 8px 24px rgba(0, 243, 255, 0.25);
-  --glow-primary: 0 0 20px rgba(0, 243, 255, 0.6);
-  --glow-secondary: 0 0 20px rgba(188, 19, 254, 0.6);
+
+  /* Optimized Shadows (Reduced spread for performance) */
+  --shadow-small: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+  /* Reduced glow radii for performance on retina screens */
+  --glow-primary: 0 0 15px rgba(0, 243, 255, 0.4);
+  --glow-secondary: 0 0 15px rgba(188, 19, 254, 0.4);
 }
 
 /*= Light Theme Variables ==*/
@@ -58,11 +62,13 @@ body {
   --text-color-alt: #787880;
   --bg-color: #ffffff;
   --bg-color-alt: #f1f3f5;
-  --header-bg: rgba(255, 255, 255, 0.85);
+  --header-bg: rgba(255, 255, 255, 0.8);
   --border-color: #e9ecef;
   --container-color: #ffffff;
   --shadow-small: 0 4px 12px rgba(0, 0, 0, 0.05);
   --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --glow-primary: none;
+  --glow-secondary: none;
 }
 
 /*===Base==*/
@@ -87,8 +93,9 @@ textarea {
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.6em;
+  line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
 }
 
 h1,
@@ -110,23 +117,31 @@ a {
 
 button {
   cursor: pointer;
-  background: none;
   border: none;
   outline: none;
+  background: none;
 }
 
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 /*===========Reusable css=============*/
 .container {
-  max-width: 1000px;
-  /* Slimmer for precise look */
+  width: 100%;
+  max-width: 1200px;
+  /* Standardize max-width */
   margin: 0 auto;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media screen and (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
 }
 
 .grid {
@@ -135,16 +150,15 @@ img {
 }
 
 .section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .section__title {
   font-size: var(--fs-h2);
   line-height: 1.2;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   text-transform: capitalize;
-  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -152,118 +166,81 @@ img {
 
 .section__title::before {
   content: '';
-  width: 2rem;
-  height: 2px;
+  width: 40px;
+  height: 3px;
   background: var(--primary-color);
+  border-radius: 4px;
 }
 
 /*===========Buttons=============*/
 .button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background-color: var(--primary-color);
   color: #fff;
-  padding: 0.8rem 1.8rem;
-  border-radius: 2rem;
+  padding: 0.8rem 2rem;
+  border-radius: 3rem;
   font-family: var(--title-font);
   font-weight: var(--bold);
   font-size: var(--fs-sm);
   letter-spacing: 0.5px;
-  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 8px 16px rgba(233, 69, 96, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 14px rgba(0, 243, 255, 0.25);
 }
 
 .button:hover {
-  background-color: var(--title-color);
-  color: var(--bg-color);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 243, 255, 0.4);
+  background-color: var(--primary-color-alt);
 }
 
 .button:disabled {
   opacity: 0.6;
-  filter: grayscale(0.5);
+  filter: grayscale(0.8);
   cursor: not-allowed;
-  transform: none !important;
-  box-shadow: none !important;
+  transform: none;
+  box-shadow: none;
 }
 
-
-.header.scroll-header {
-  background: var(--header-bg);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-color);
-}
-
-/* Custom Selection */
-::selection {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-
-/* Helper Classes */
-.text-xs {
-  font-size: var(--fs-xs);
-}
-
-.text-sm {
-  font-size: var(--fs-sm);
-}
-
-.text-lg {
-  font-size: var(--fs-lg);
-}
-
-@media screen and (max-width: 768px) {
-  :root {
-    --fs-h1: 2.5rem;
-    --fs-h2: 2rem;
-  }
-}
-
-.footer {
-  border-top: 1px solid var(--border-color);
-  padding: 3rem 0;
-}
-
-.footer__container {
-  text-align: center;
-}
-
-.footer__copy {
-  font-size: var(--fs-sm);
-  color: var(--text-color-alt);
-}
-
-/* Animated Cyber Background */
+/* Animated Cyber Background (Optimized) */
 body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Simplified gradient for better GPU performance on Mac Retina */
+  background:
+    radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.08) 0%, transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.08) 0%, transparent 25%);
+  z-index: -1;
+  pointer-events: none;
+  /* Hardware Acceleration Hack */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Grid Overlay (Separated for performance layering) */
+body::after {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(188, 19, 254, 0.1) 0%, transparent 50%),
-    linear-gradient(0deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
-  background-size: 100% 100%, 40px 40px, 40px 40px;
-  background-position: 0 0, 0 0, 0 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
   z-index: -1;
-  animation: gridMove 20s linear infinite;
   pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
 
-@keyframes gridMove {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(40px);
-  }
-}
 
 /* Scrollbar Optimization */
 ::-webkit-scrollbar {

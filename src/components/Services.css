@@ -52,13 +52,14 @@
 }
 
 @media screen and (max-width: 992px) {
-    .services__container {
+    .services__grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media screen and (max-width: 576px) {
-    .services__container {
+@media screen and (max-width: 768px) {
+    .services__grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
 }
