@@ -52,10 +52,11 @@ const Timeline = () => {
                     top: 0,
                     bottom: 0,
                     width: '2px',
-                    background: 'var(--border-color)'
+                    background: 'var(--border-color)',
+                    zIndex: 0
                 }} className="timeline-line"></div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', position: 'relative', zIndex: 1 }}>
                     {history.map((item, i) => (
                         <motion.div
                             key={i}
@@ -78,15 +79,17 @@ const Timeline = () => {
                                 borderRadius: '50%',
                                 background: 'var(--bg-color)',
                                 border: '2px solid var(--primary-color)',
-                                boxShadow: '0 0 10px var(--primary-color)'
+                                boxShadow: '0 0 10px var(--primary-color)',
+                                zIndex: 2
                             }}></div>
 
                             <div style={{
-                                background: 'rgba(18, 18, 20, 0.4)',
+                                background: 'var(--container-color)', // Updated to variable
                                 border: '1px solid var(--border-color)',
                                 padding: '1.5rem',
                                 borderRadius: '1rem',
-                                borderLeft: '4px solid var(--primary-color-alt)'
+                                borderLeft: '4px solid var(--primary-color-alt)',
+                                boxShadow: 'var(--shadow-small)'
                             }}>
                                 <span style={{
                                     fontFamily: 'monospace',
@@ -119,12 +122,6 @@ const Timeline = () => {
                 .back-link:hover {
                     color: var(--primary-color);
                     transform: translateX(-5px);
-                }
-                @media (min-width: 768px) {
-                    .timeline-line { left: 50% !important; margin-left: -1px; }
-                    .timeline-item:nth-child(odd) { text-align: right; padding-right: 3rem; padding-left: 0; }
-                    .timeline-item:nth-child(even) { text-align: left; padding-left: 3rem; }
-                    /* We'll stick to single column for simplicity first, 2-col timeline takes more complex CSS */
                 }
             `}</style>
         </section>
