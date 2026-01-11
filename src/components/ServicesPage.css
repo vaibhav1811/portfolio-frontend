@@ -1,0 +1,126 @@
+.services-page {
+    min-height: 100vh;
+    padding-top: 8rem;
+    background: var(--bg-color);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: var(--bold);
+    margin-bottom: 2rem;
+    font-size: var(--fs-sm);
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    transform: translateX(-5px);
+}
+
+.services-page__header {
+    margin-bottom: 4rem;
+}
+
+.services-page__subtitle {
+    font-size: var(--fs-lg);
+    color: var(--text-color);
+    max-width: 600px;
+}
+
+.services-page__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.detailed-service__card {
+    display: flex;
+    gap: 2.5rem;
+    background: var(--bg-color-alt);
+    padding: 3rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border-color);
+    transition: 0.4s;
+}
+
+.detailed-service__card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.detailed-service__icon-box {
+    width: 80px;
+    height: 80px;
+    background: rgba(233, 69, 96, 0.1);
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.detailed-service__title {
+    font-size: var(--fs-h3);
+    margin-bottom: 1rem;
+}
+
+.detailed-service__desc {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    max-width: 800px;
+}
+
+.detailed-service__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.service-tag {
+    font-size: var(--fs-xs);
+    font-weight: var(--bold);
+    color: var(--text-color-alt);
+    background: var(--bg-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.services-page__cta {
+    margin-top: 6rem;
+    text-align: center;
+    background: var(--bg-color-alt);
+    padding: 4rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.services-page__cta h3 {
+    font-size: var(--fs-h2);
+    margin-bottom: 1rem;
+}
+
+.services-page__cta p {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+@media screen and (max-width: 768px) {
+    .detailed-service__card {
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+
+    .detailed-service__icon-box {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+}

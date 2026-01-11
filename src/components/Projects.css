@@ -1,0 +1,85 @@
+.project__filters {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.project__item-filter {
+    color: var(--title-color);
+    font-weight: var(--medium);
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.project__item-filter:hover,
+.active-work {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.projects__container {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.project__card {
+    background-color: var(--container-color);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-small);
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+
+.project__card:hover {
+    border-color: var(--primary-color);
+}
+
+.project__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project__data {
+    padding: 1.5rem;
+}
+
+.project__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.project__description {
+    margin-bottom: 1.5rem;
+    font-size: var(--fs-sm);
+    color: var(--text-color-alt);
+}
+
+.project__button {
+    color: var(--primary-color);
+    font-size: var(--fs-sm);
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    transition: 0.3s;
+}
+
+.project__button:hover {
+    column-gap: 0.5rem;
+}
+
+@media screen and (max-width: 992px) {
+    .projects__container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .projects__container {
+        grid-template-columns: 1fr;
+    }
+}
